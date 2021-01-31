@@ -1,4 +1,4 @@
-import 'package:chat/chart_screen.dart';
+import 'package:chat/chat_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
