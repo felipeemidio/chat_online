@@ -23,7 +23,9 @@ class _ChatScreenState extends State<ChatScreen> {
   void initState() {
     super.initState();
     FirebaseAuth.instance.onAuthStateChanged.listen((user){
-      _currentUser = user;
+      setState(() {
+        _currentUser = user;
+      });
     });
   }
 
@@ -90,8 +92,25 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: Text("Ola"),
+        title: Text( _currentUser != null ? "Olá, ${_currentUser.displayName}" : "Chat App"),
         elevation: 0,
+        centerTitle: true,
+        actions: [
+          _currentUser != null ?
+            IconButton(
+                icon: Icon(Icons.exit_to_app),
+              onPressed: () {
+                  FirebaseAuth.instance.signOut();
+                  googleSignIn.signOut();
+
+                  _scaffoldKey.currentState.showSnackBar(
+                    SnackBar(
+                      content: Text("Você saiu com sucesso."),
+                    ),
+                  );
+              },
+            ) : Container(),
+        ],
       ),
       body: Column(children: [
         Expanded(
