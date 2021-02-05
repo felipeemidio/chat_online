@@ -19,7 +19,7 @@ class ChatMessage extends StatelessWidget {
           )) : Container(),
           Expanded(
             child: Column(
-              crossAxisAlignment: mine ? CrossAxisAlignment.start : CrossAxisAlignment.end,
+              crossAxisAlignment: mine ? CrossAxisAlignment.end : CrossAxisAlignment.start,
               children: [
                 data["imgUrl"] != null
                     ? Image.network(data["imgUrl"], width: 250,)
@@ -29,7 +29,7 @@ class ChatMessage extends StatelessWidget {
                       ),
                 Text(
                   data["senderName"],
-                  textAlign: mine? TextAlign.end : TextAlign.start,
+                  textAlign: mine? TextAlign.start : TextAlign.end,
                   style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
                 ),
               ],
